@@ -5,7 +5,7 @@ export default function HomeScreen() {
   return (
     <>
       <PushNotification />
-      <WebView source={{ uri: "https://linkt-webview.vercel.app/" }} />;
+      <WebView source={{ uri: "https://linkt-webview.vercel.app/" }} />
     </>
   );
 }
