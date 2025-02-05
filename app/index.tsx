@@ -1,7 +1,16 @@
+import usePushNotification from "@/hooks/usePushNotification";
 import { SafeAreaView, StatusBar, Platform } from "react-native";
 import WebView from "react-native-webview";
 
 export default function HomeScreen() {
+  const expoPushToken = usePushNotification();
+
+  const runFirst = `
+    if(localStorage.getItem('user')){
+        sessionStorage.setItem(${expoPushToken});
+    }
+    true;
+  `;
   return (
     <SafeAreaView
       style={{
@@ -10,7 +19,11 @@ export default function HomeScreen() {
         backgroundColor: "white",
       }}
     >
-      <WebView source={{ uri: "https://linkt.one" }} />
+      <WebView
+        source={{ uri: "https://linkt.one" }}
+        runFirst
+        injectedJavaScript={runFirst}
+      />
     </SafeAreaView>
   );
 }
