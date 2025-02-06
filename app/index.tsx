@@ -21,7 +21,6 @@ export default function HomeScreen() {
     >
       <WebView
         source={{ uri: "https://linkt.one" }}
-        runFirst
         injectedJavaScript={runFirst}
       />
     </SafeAreaView>
