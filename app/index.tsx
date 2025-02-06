@@ -6,7 +6,7 @@ export default function HomeScreen() {
   const expoPushToken = usePushNotification();
 
   const runFirst = `
-    if(localStorage.getItem('user')){
+    if(!localStorage.getItem('linkt-user')){
         sessionStorage.setItem(${expoPushToken});
     }
     true;
