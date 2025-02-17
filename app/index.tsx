@@ -4,12 +4,12 @@ import { SafeAreaView, StatusBar, Platform, Alert } from "react-native";
 import WebView from "react-native-webview";
 
 export default function HomeScreen() {
-  // const expoPushToken = usePushNotification();
+  const expoPushToken = usePushNotification();
   const { webViewRef, setNavState } = useWebViewContainer();
 
   const runFirst = `
     if(!localStorage.getItem('linkt-user')){
-        sessionStorage.setItem();
+        sessionStorage.setItem(${expoPushToken});
     }
     true;
   `;
