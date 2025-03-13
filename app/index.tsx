@@ -9,7 +9,9 @@ export default function HomeScreen() {
 
   const runFirst = `
     if(!localStorage.getItem('linkt-user')){
-        sessionStorage.setItem(${expoPushToken});
+      (function (){
+      sessionStorage.setItem('expo_push_token', ${expoPushToken});
+      })();  
     }
     true;
   `;
@@ -25,7 +27,7 @@ export default function HomeScreen() {
       <WebView
         ref={webViewRef}
         source={{ uri: "https://linkt.one" }}
-        injectedJavaScript={runFirst}
+        injectedJavaScriptBeforeContentLoaded={runFirst}
         onNavigationStateChange={(nav: navType) => {
           setNavState({ url: nav.url, canGoBack: nav.canGoBack });
         }}
