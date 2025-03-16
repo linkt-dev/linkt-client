@@ -1,6 +1,6 @@
 import usePushNotification from "@/hooks/usePushNotification";
 import { navType, useWebViewContainer } from "@/hooks/useWebViewContainer";
-import { SafeAreaView, StatusBar, Platform, Alert } from "react-native";
+import { SafeAreaView, StatusBar, Platform } from "react-native";
 import WebView from "react-native-webview";
 
 export default function HomeScreen() {
@@ -9,10 +9,11 @@ export default function HomeScreen() {
 
   const runFirst = `
     if(!localStorage.getItem('linkt-user')){
-      (function (){
-      sessionStorage.setItem('expo_push_token', ${expoPushToken});
+      (function (){ 
+        sessionStorage.setItem('expo_push_token', "${expoPushToken}");
       })();  
     }
+    
     true;
   `;
 
@@ -27,7 +28,7 @@ export default function HomeScreen() {
       <WebView
         ref={webViewRef}
         source={{ uri: "https://linkt.one" }}
-        injectedJavaScriptBeforeContentLoaded={runFirst}
+        injectedJavaScript={runFirst}
         onNavigationStateChange={(nav: navType) => {
           setNavState({ url: nav.url, canGoBack: nav.canGoBack });
         }}
